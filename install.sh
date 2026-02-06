@@ -83,4 +83,4 @@ bench init --frappe-branch version-16 frappe-bench
 
 
 echo "Installation successfully completed!"
-echo "Generated DB password: $PASSWORD"
+echo "Generated DB password: $DB_ROOT_PASS"
