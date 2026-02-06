@@ -26,11 +26,10 @@ sudo apt install -y git curl wget software-properties-common \
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv python install 3.14 --default
 sudo npm install -g yarn
-curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash -s -- --install-dir $HOME/.local/bin
-curl -fsSL https://fnm.vercel.app/install | bash
-source ~/.bashrc
+curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(fnm env --use-on-cd)"
 fnm use --install-if-missing 24
-
 # -------------------------
 # Install wkhtmltopdf
 # -------------------------
@@ -84,4 +83,4 @@ bench init --frappe-branch version-16 frappe-bench
 
 
 echo "Installation successfully completed!"
-
+echo "Generated DB password: $PASSWORD"
