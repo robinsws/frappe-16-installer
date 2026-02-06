@@ -20,12 +20,17 @@ sudo apt upgrade -y
 echo "[2/6] Installing base dependencies..."
 sudo apt install -y git curl wget software-properties-common \
     build-essential python3-dev python3-pip python3-setuptools python3-venv \
-    pkg-config xvfb libmysqlclient-dev nodejs  redis-server \
+    pkg-config xvfb libmysqlclient-dev unzip  redis-server \
     mariadb-server mariadb-client yarnpkg npm 
 1 | sudo apt-get install cron-apt -y
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv python install 3.14 --default
 sudo npm install -g yarn
+curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash -s -- --install-dir $HOME/.local/bin
+curl -fsSL https://fnm.vercel.app/install | bash
+source ~/.bashrc
+fnm use --install-if-missing 24
+
 # -------------------------
 # Install wkhtmltopdf
 # -------------------------
