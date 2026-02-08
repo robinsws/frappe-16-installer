@@ -24,16 +24,12 @@ sudo apt install -y git curl wget software-properties-common \
     build-essential python3-dev python3-pip python3-setuptools python3-venv \
     pkg-config xvfb libmysqlclient-dev unzip gnupg redis-server \
     mariadb-server mariadb-client ca-certificates 
-curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
-sudo apt install -y nodejs
 1 | sudo apt-get install cron-apt -y
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv python install 3.14 --default
 sudo npm install -g yarn
-curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "$HOME/.local/bin"
-export PATH="$HOME/.local/bin:$PATH"
-eval "$(fnm env --use-on-cd)"
-fnm use --install-if-missing 24
+curl -o- https://fnm.vercel.app/install | bash
+fnm install 24
 # -------------------------
 # Install wkhtmltopdf
 # -------------------------
