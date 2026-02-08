@@ -19,9 +19,9 @@ sudo apt upgrade -y
 # -------------------------
 echo "[2/6] Installing base dependencies..."
 sudo apt install -y git curl wget software-properties-common \
-    build-essential\
+    build-essential libfontconfig cron gcc certbot supervisor \
     pkg-config xvfb libmysqlclient-dev unzip gnupg redis-server npm \
-    mariadb-server mariadb-client ca-certificates \
+    mariadb-server mariadb-client ca-certificates libmariadb-dev ansible \
     libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf-2.0-0 libffi-dev shared-mime-info
 sudo apt remove nodejs npm -y
 sudo apt autoremove -y
@@ -30,7 +30,7 @@ sudo apt install -y nodejs
 sudo npm install -g yarn
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv python install 3.14 --default
-
+sudo apt install -y python3-certbot-nginx
 # -------------------------
 # Install wkhtmltopdf
 # -------------------------
@@ -79,7 +79,10 @@ uv tool install frappe-bench
 # -------------------------
 echo "[6/6] Initializing bench..."
 source ~/.bashrc
-bench init --frappe-branch version-16 frappe-bench
+bench init frappe-bench --frappe-branch version-16 --python python3.14
+.local/share/uv/tools/frappe-bench/bin/python -m ensurepip
+chmod -R o+rx .
+cd frappe-bench/
 
 
 
