@@ -23,7 +23,7 @@ sudo apt autoremove -y
 sudo apt install -y git curl wget software-properties-common \
     build-essential python3-dev python3-pip python3-setuptools python3-venv \
     pkg-config xvfb libmysqlclient-dev unzip gnupg redis-server \
-    mariadb-server mariadb-client yarnpkg ca-certificates 
+    mariadb-server mariadb-client ca-certificates 
 curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt install -y nodejs
 1 | sudo apt-get install cron-apt -y
