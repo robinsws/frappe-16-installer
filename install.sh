@@ -27,10 +27,10 @@ sudo apt install -y git curl wget software-properties-common \
 1 | sudo apt-get install cron-apt -y
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv python install 3.14 --default
-sudo npm install -g yarn
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 \. "$HOME/.nvm/nvm.sh"
 nvm install 24
+corepack enable yarn
 # -------------------------
 # Install wkhtmltopdf
 # -------------------------
