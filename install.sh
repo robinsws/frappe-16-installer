@@ -18,19 +18,19 @@ sudo apt upgrade -y
 # Install Essential Packages
 # -------------------------
 echo "[2/6] Installing base dependencies..."
-sudo apt remove nodejs -y
+sudo apt remove nodejs npm -y
 sudo apt autoremove -y
-sudo apt install -y git curl wget software-properties-common \
-    build-essential python3-dev python3-pip python3-setuptools python3-venv \
-    pkg-config xvfb libmysqlclient-dev unzip gnupg redis-server npm \
-    mariadb-server mariadb-client ca-certificates 
-1 | sudo apt-get install cron-apt -y
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y curl ca-certificates gnupg
+sudo apt install -y libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf-2.0-0 libffi-dev shared-mime-info
+curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+sudo apt install -y nodejs
+sudo npm install -g yarn
 curl -LsSf https://astral.sh/uv/install.sh | sh
+source ~/.local/bin/env
 uv python install 3.14 --default
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-\. "$HOME/.nvm/nvm.sh"
-nvm install 24
-corepack enable yarn
+
 # -------------------------
 # Install wkhtmltopdf
 # -------------------------
