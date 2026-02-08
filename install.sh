@@ -18,11 +18,11 @@ sudo apt upgrade -y
 # Install Essential Packages
 # -------------------------
 echo "[2/6] Installing base dependencies..."
-sudo apt remove nodejs npm -y
+sudo apt remove nodejs -y
 sudo apt autoremove -y
 sudo apt install -y git curl wget software-properties-common \
     build-essential python3-dev python3-pip python3-setuptools python3-venv \
-    pkg-config xvfb libmysqlclient-dev unzip gnupg redis-server \
+    pkg-config xvfb libmysqlclient-dev unzip gnupg redis-server npm \
     mariadb-server mariadb-client ca-certificates 
 1 | sudo apt-get install cron-apt -y
 curl -LsSf https://astral.sh/uv/install.sh | sh
