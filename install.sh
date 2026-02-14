@@ -20,7 +20,7 @@ sudo apt upgrade -y
 echo "[2/6] Installing base dependencies..."
 sudo apt install -y git curl wget software-properties-common \
     build-essential libfontconfig cron gcc certbot supervisor \
-    pkg-config xvfb unzip gnupg redis-server npm \
+    pkg-config xvfb unzip gnupg redis-server \
     mariadb-server mariadb-client ca-certificates libmariadb-dev ansible \
     libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf-2.0-0 libffi-dev shared-mime-info
 sudo apt remove nodejs npm -y
