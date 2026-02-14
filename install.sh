@@ -23,13 +23,8 @@ sudo apt install -y git curl wget software-properties-common \
     pkg-config xvfb unzip gnupg redis-server npm \
     mariadb-server mariadb-client ca-certificates libmariadb-dev ansible \
     libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf-2.0-0 libffi-dev shared-mime-info
-# Prüft, ob die Pakete installiert sind, und löscht sie nur dann
-if dpkg -l | grep -E -q "^ii  (nodejs|npm)"; then
-    sudo apt remove nodejs npm -y
-    sudo apt autoremove -y
-else
-    echo "Node.js und npm sind nicht installiert – überspringe."
-fi
+sudo apt remove nodejs npm -y
+sudo apt autoremove -y
 curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
 sudo apt install -y nodejs
 sudo npm install -g yarn
