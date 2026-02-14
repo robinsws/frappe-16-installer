@@ -29,6 +29,7 @@ curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
 sudo apt install -y nodejs
 sudo npm install -g yarn
 curl -LsSf https://astral.sh/uv/install.sh | sh
+source ~/.bashrc
 uv python install 3.14 --default
 sudo apt install -y python3-certbot-nginx
 # -------------------------
