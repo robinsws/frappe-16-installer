@@ -17,15 +17,11 @@ sudo apt update -y
 sudo apt upgrade -y
 
 # -------------------------
-# Install Essential Packages
+# Install Essential Packages #1
 # -------------------------
 echo "[2/7] Installing base dependencies..."
 sudo apt install -y \
-    git curl wget build-essential libfontconfig1 cron gcc certbot supervisor \
-    pkg-config xvfb unzip gnupg redis-server \
-    mariadb-server mariadb-client ca-certificates libmariadb-dev ansible \
-    libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf-2.0-0 libffi-dev shared-mime-info \
-    python3-dev python3-pip
+    wget 
 
 # -------------------------
 # wkhtmltopdf
@@ -48,6 +44,16 @@ chmod +x /usr/local/bin/wkhtmltoimage
 rm -rf wkhtmltox ${WK_FILE}
 
 wkhtmltopdf --version
+
+# -------------------------
+# Install Essential Packages #2
+# -------------------------
+sudo apt install -y \
+    git wget build-essential libfontconfig1 cron gcc certbot supervisor \
+    pkg-config xvfb unzip gnupg redis-server \
+    mariadb-server mariadb-client ca-certificates libmariadb-dev ansible \
+    libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf-2.0-0 libffi-dev shared-mime-info \
+    python3-dev python3-pip
 # -------------------------
 # Node.js (via NVM)
 # -------------------------
