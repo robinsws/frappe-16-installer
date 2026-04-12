@@ -1,5 +1,6 @@
-set -e
-
+#!/usr/bin/env bash
+# ERPNext v16 Install Script for Debian 13
+# Tested for amd64 systems.
 -------------------------
 Vars
 -------------------------
