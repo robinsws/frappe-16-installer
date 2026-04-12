@@ -1,5 +1,6 @@
 # frappe-16-installer
 Install frappe 16 including all dependencies for Ubuntu 24.04 or Debian 13
+
 Curl&Bash must be Installed
 
 Ubuntu:
