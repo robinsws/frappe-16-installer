@@ -25,8 +25,29 @@ sudo apt install -y \
     pkg-config xvfb unzip gnupg redis-server \
     mariadb-server mariadb-client ca-certificates libmariadb-dev ansible \
     libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf-2.0-0 libffi-dev shared-mime-info \
-    python3-dev python3-pip wkhtmltopdf
+    python3-dev python3-pip
 
+# -------------------------
+# wkhtmltopdf
+# -------------------------
+echo "[WKHTML] Installing wkhtmltopdf (static build)..."
+
+WK_VERSION="0.12.6.1-3"
+WK_FILE="wkhtmltox_${WK_VERSION}.linux-amd64.tar.xz"
+
+wget https://github.com/wkhtmltopdf/packaging/releases/download/${WK_VERSION}/${WK_FILE}
+
+tar -xf ${WK_FILE}
+
+sudo cp wkhtmltox/bin/wkhtmltopdf /usr/local/bin/
+sudo cp wkhtmltox/bin/wkhtmltoimage /usr/local/bin/
+
+chmod +x /usr/local/bin/wkhtmltopdf
+chmod +x /usr/local/bin/wkhtmltoimage
+
+rm -rf wkhtmltox ${WK_FILE}
+
+wkhtmltopdf --version
 # -------------------------
 # Node.js (via NVM)
 # -------------------------
