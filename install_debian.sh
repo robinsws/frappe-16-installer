@@ -55,8 +55,8 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
 source "$NVM_DIR/nvm.sh"
 
-nvm install 22
-nvm use 22
+nvm install 24
+nvm use 24
 npm install -g yarn
 
 # -------------------------
