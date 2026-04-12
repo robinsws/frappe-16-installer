@@ -67,7 +67,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 export PATH="$HOME/.local/bin:$PATH"
 
-uv python install 3.11 --default
+uv python install 3.12 --default
 
 # -------------------------
 # MariaDB Secure Install
