@@ -49,11 +49,11 @@ sudo apt install -y \
 # -------------------------
 # Node.js (via NVM)
 # -------------------------
-echo "[3/7] Installing Node.js via NVM..."
+echo "[3/7] Installing Node.js 24 via NVM..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
 export NVM_DIR="$HOME/.nvm"
-source "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 nvm install 24
 nvm use 24
