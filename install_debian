@@ -1,38 +1,38 @@
 #!/usr/bin/env bash
-# ERPNext v16 Install Script for Debian 13
-# Tested for amd64 systems.
-#-------------------------
-#Vars
-#-------------------------
+# ERPNext v16 Install Script for Debian 13 (Trixie)
+# Clean & compatible version (no Ubuntu leftovers)
 
+set -e
+
+# -------------------------
+# Vars
+# -------------------------
 DB_ROOT_PASS="$(openssl rand -base64 48 | tr -dc 'A-Za-z0-9!@#$%^&*()-_=+' | head -c 32)"
 
-#-------------------------
-#Update & Core Packages
-#-------------------------
-
-echo "[1/6] Updating system..."
+# -------------------------
+# Update & Core Packages
+# -------------------------
+echo "[1/7] Updating system..."
 sudo apt update -y
 sudo apt upgrade -y
 
-#-------------------------
-#Install Essential Packages
-#-------------------------
+# -------------------------
+# Install Essential Packages
+# -------------------------
+echo "[2/7] Installing base dependencies..."
+sudo apt install -y \
+    git curl wget build-essential libfontconfig cron gcc certbot supervisor \
+    pkg-config xvfb unzip gnupg redis-server \
+    mariadb-server mariadb-client ca-certificates libmariadb-dev ansible \
+    libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf-2.0-0 libffi-dev shared-mime-info \
+    python3-dev python3-pip wkhtmltopdf
 
-echo "[2/6] Installing base dependencies..."
-sudo apt install -y
-git curl wget build-essential libfontconfig cron gcc certbot supervisor
-pkg-config xvfb unzip gnupg redis-server
-mariadb-server mariadb-client ca-certificates libmariadb-dev ansible
-libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf-2.0-0 libffi-dev shared-mime-info
-python3-dev python3-pip wkhtmltopdf
-
-#-------------------------
-#Node.js (via NVM - Debian safe)
-#-------------------------
-
-echo "[3/6] Installing Node.js via NVM..."
+# -------------------------
+# Node.js (via NVM)
+# -------------------------
+echo "[3/7] Installing Node.js via NVM..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
 export NVM_DIR="$HOME/.nvm"
 source "$NVM_DIR/nvm.sh"
 
@@ -40,21 +40,20 @@ nvm install 22
 nvm use 22
 npm install -g yarn
 
-#-------------------------
-#Install UV + Python
-#-------------------------
-
-echo "[4/6] Installing Python via uv..."
+# -------------------------
+# Install UV + Python
+# -------------------------
+echo "[4/7] Installing Python via uv..."
 curl -LsSf https://astral.sh/uv/install.sh | sh
+
 export PATH="$HOME/.local/bin:$PATH"
 
 uv python install 3.11 --default
 
-#-------------------------
-#MariaDB Secure Install
-#-------------------------
-
-echo "[5/6] Securing MariaDB..."
+# -------------------------
+# MariaDB Secure Install
+# -------------------------
+echo "[5/7] Securing MariaDB..."
 sudo mysql <<EOF
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASS}';
 DELETE FROM mysql.user WHERE User='';
@@ -76,22 +75,20 @@ EOF
 
 sudo systemctl restart mariadb
 
-#-------------------------
-#Install Bench
-#-------------------------
-
-echo "[6/6] Installing bench CLI..."
+# -------------------------
+# Install Bench
+# -------------------------
+echo "[6/7] Installing bench CLI..."
 export PATH="$HOME/.local/bin:$PATH"
 uv tool install frappe-bench
 
-#-------------------------
-#Init Frappe Bench
-#-------------------------
-
+# -------------------------
+# Init Frappe Bench
+# -------------------------
 echo "[7/7] Initializing bench..."
 bench init frappe-bench --frappe-branch version-16 --python python3.11
 
-cd frappe-bench/
+cd frappe-bench
 
 chmod -R 755 .
 
