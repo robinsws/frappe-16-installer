@@ -105,8 +105,10 @@ uv tool install frappe-bench
 # Init Frappe Bench
 # -------------------------
 echo "[7/7] Initializing bench..."
-bench init frappe-bench --frappe-branch version-16 --python python3.11
-
+source ~/.bashrc
+bench init frappe-bench --frappe-branch version-16 --python python3.14
+.local/share/uv/tools/frappe-bench/bin/python -m ensurepip
+chmod -R o+rx .
 cd frappe-bench
 
 chmod -R 755 .
