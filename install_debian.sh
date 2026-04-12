@@ -26,23 +26,16 @@ sudo apt install -y \
 # -------------------------
 # Install wkhtmltopdf 
 # -------------------------
-echo "[WKHTML] Installing wkhtmltopdf..."
+echo "[WKHTML] Installing wkhtmltopdf (Debian compatible)..."
 
 WK_DEB="wkhtmltox_0.12.6.1-3.bookworm_amd64.deb"
 
-# benötigte Fonts (wichtig für PDFs!)
-sudo apt install -y xfonts-75dpi xfonts-base fontconfig
+wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/${WK_DEB}
 
-# Download
-wget -q https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/${WK_DEB}
-
-# Installation + Dependency Fix
 sudo apt install -y ./${WK_DEB} || sudo apt --fix-broken install -y
 
-# Cleanup
 rm -f ${WK_DEB}
 
-# Test
 wkhtmltopdf --version
 # -------------------------
 # Install Essential Packages #2
