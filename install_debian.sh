@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 # ERPNext/Frappe v16 Install Script for Debian 13 (Trixie)
 #
-# Nutzung (als Nicht-root-Benutzer, z.B. "frappe"):
-#   ./install_debian.sh                                  # nur Installation + bench init
-#   ./install_debian.sh --site frappe.fritz.box          # + Site anlegen
-#   ./install_debian.sh --site frappe.fritz.box --prod   # + Produktiv-Setup (nginx Port 80, supervisor, scheduler)
-#
 # Optionen:
 #   --site NAME          Site-Name (Pflicht bei --prod)
 #   --prod               Produktiv-Setup ohne SSL
