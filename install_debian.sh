@@ -136,6 +136,7 @@ if [ -n "$SITE" ]; then
     echo "[SITE] Lege Site ${SITE} an..."
     if [ ! -d "sites/${SITE}" ]; then
         bench new-site "${SITE}" --set-default \
+            --db-root-username root \
             --db-root-password "${DB_ROOT_PASS}" \
             --admin-password "${ADMIN_PASS}"
     else
