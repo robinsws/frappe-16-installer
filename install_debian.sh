@@ -156,6 +156,9 @@ if [ "$PROD" = "1" ]; then
     echo "[PROD] Produktiv-Setup (nginx Port 80, supervisor, scheduler)..."
     BENCH_BIN="$(command -v bench)"
 
+    # Supervisor kennt den nvm-PATH nicht -> node systemweit verlinken (für socketio)
+    sudo ln -sf "$(command -v node)" /usr/local/bin/node
+
     # nginx und supervisor müssen laufen, bench macht nur reload
     sudo rm -f /etc/nginx/sites-enabled/default
     sudo systemctl enable --now supervisor
