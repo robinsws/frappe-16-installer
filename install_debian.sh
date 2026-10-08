@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-# ERPNext/Frappe v16 Install Script for Debian 13 (Trixie)
+# Frappe v16 Install Script for Debian 13 (Trixie)
 #
 # Optionen:
 #   --site NAME          Site-Name (Pflicht bei --prod)
 #   --prod               Produktiv-Setup ohne SSL
 #   --admin-pass PASS    Administrator-Passwort (sonst zufällig generiert)
-#   --erpnext            ERPNext zusätzlich installieren
 #   -h, --help           Hilfe
 
 set -e
@@ -15,10 +14,9 @@ set -e
 # -------------------------
 SITE=""
 PROD=0
-ERPNEXT=0
 ADMIN_PASS=""
 
-usage() { sed -n '2,15p' "$0" | sed 's/^# \{0,1\}//'; exit "${1:-0}"; }
+usage() { sed -n '2,14p' "$0" | sed 's/^# \{0,1\}//'; exit "${1:-0}"; }
 
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -27,7 +25,6 @@ while [ $# -gt 0 ]; do
         --prod)        PROD=1; shift ;;
         --admin-pass)  ADMIN_PASS="$2"; shift 2 ;;
         --admin-pass=*) ADMIN_PASS="${1#*=}"; shift ;;
-        --erpnext)     ERPNEXT=1; shift ;;
         -h|--help)     usage 0 ;;
         *) echo "Unbekannte Option: $1"; usage 1 ;;
     esac
@@ -144,11 +141,6 @@ if [ -n "$SITE" ]; then
     else
         echo "Site existiert bereits – übersprungen."
         bench use "${SITE}"
-    fi
-
-    if [ "$ERPNEXT" = "1" ]; then
-        bench get-app erpnext --branch version-16
-        bench --site "${SITE}" install-app erpnext
     fi
 
     bench set-config -g developer_mode 0
