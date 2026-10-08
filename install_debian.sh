@@ -179,6 +179,10 @@ if [ "$PROD" = "1" ]; then
     # bench startet eigene Redis-Instanzen
     sudo systemctl disable --now redis-server || true
 
+    # Configs explizit verlinken (bench macht das nicht zuverlässig)
+    sudo ln -sf "$BENCH_DIR/config/supervisor.conf" /etc/supervisor/conf.d/frappe-bench.conf
+    sudo ln -sf "$BENCH_DIR/config/nginx.conf" /etc/nginx/conf.d/frappe-bench.conf
+
     sudo nginx -t
     sudo systemctl restart nginx
 
